@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Monitoring Truck</title>
+  
+  <!-- Konfigurasi Utama Android (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="icon-192.png">
+  <link rel="icon" sizes="512x512" href="icon-512.png">
+
+  <!-- Konfigurasi iOS -->
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+    /* Gunakan 100dvh agar pas dengan layar Android tanpa tertutup navigasi */
+    body, html { 
+      margin: 0; 
+      padding: 0; 
+      width: 100%;
+      height: 100dvh; 
+      overflow: hidden; 
+      background-color: #0f172a; 
+    }
+    iframe { 
+      width: 100%; 
+      height: 100%; 
+      border: none; 
+      display: block; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tambahkan geolocation jika butuh fitur lokasi truk -->
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbzoFfd8CBkRE6jgdErQHzblhkpmXqjneVDZyamzK18P5oTHykuyF7LqwMDHBsI8dUD3/exec" 
+    allow="camera; microphone; fullscreen; geolocation">
+  </iframe>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('PWA Service Worker Aktif!'))
+          .catch(err => console.log('PWA Gagal:', err));
+      });
+    }
+  </script>
+</body>
+</html>
